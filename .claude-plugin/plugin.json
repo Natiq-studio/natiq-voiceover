@@ -1,0 +1,10 @@
+{
+  "name": "natiq-voiceover",
+  "version": "1.0.0",
+  "description": "Algerian Darija voiceovers for Remotion, motion graphics and ffmpeg projects.",
+  "author": {"name": "Natiq Studio"},
+  "homepage": "https://natiq.studio",
+  "privacyPolicyUrl": "https://natiq.studio/legal/privacy/",
+  "license": "MIT",
+  "keywords": ["voiceover", "algerian-darija", "remotion", "video"]
+}

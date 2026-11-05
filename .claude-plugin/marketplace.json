@@ -1,0 +1,12 @@
+{
+  "name": "natiq-tools",
+  "description": "Natiq integrations for creative workflows.",
+  "owner": {"name": "Natiq Studio"},
+  "plugins": [
+    {
+      "name": "natiq-voiceover",
+      "source": "./",
+      "description": "Algerian Darija voiceovers for video projects."
+    }
+  ]
+}

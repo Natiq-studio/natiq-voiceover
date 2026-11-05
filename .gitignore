@@ -1,0 +1,7 @@
+.env
+.env.*
+node_modules/
+out/
+*.wav
+*.mp4
+.claude/settings.local.json
