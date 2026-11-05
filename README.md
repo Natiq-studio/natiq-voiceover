@@ -6,6 +6,12 @@ ffmpeg projects. The plugin adds a practical video workflow skill and connects t
 server is needed. The plugin is MIT licensed; Natiq generation is a paid service
 using your account's tokens and [API terms and pricing](https://natiq.studio/api/docs/).
 
+## Availability
+
+The plugin is ready for installation. Its remote MCP backend requires a separate
+Natiq deployment; publishing this repository does not activate the endpoint.
+If `/mcp` is unavailable, the service rollout must finish before generation works.
+
 ## Install
 
 1. Sign in and create a **write-scoped** API key at
@@ -23,18 +29,17 @@ using your account's tokens and [API terms and pricing](https://natiq.studio/api
 
    PowerShell 7: `$env:NATIQ_API_KEY = Read-Host -MaskInput 'Natiq API key'`, then
    launch `claude` from that shell. Restart Claude after changing the variable.
-3. From a local clone, run these commands inside Claude Code:
+3. Run these commands inside Claude Code:
 
    ```text
-   /plugin marketplace add /absolute/path/to/natiq-voiceover
+   /plugin marketplace add Natiq-studio/natiq-voiceover
    /plugin install natiq-voiceover@natiq-tools
    /reload-plugins
    /mcp
    ```
 
-   Once published, replace the local path with the GitHub `OWNER/natiq-voiceover`
-   shown on this repository's page. `OWNER` means the actual repository owner,
-   not the Natiq domain. Approve the MCP connection if Claude prompts you.
+   Approve the MCP connection if Claude prompts you. To test a local clone, use
+   `/plugin marketplace add /absolute/path/to/natiq-voiceover` instead.
    For development you can also launch `claude --plugin-dir /path/to/natiq-voiceover`.
 
 Use `/natiq-voiceover:voiceover` or ask for an Algerian voiceover in a video task.
