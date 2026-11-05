@@ -8,9 +8,9 @@ using your account's tokens and [API terms and pricing](https://natiq.studio/api
 
 ## Availability
 
-The plugin is ready for installation. Its remote MCP backend requires a separate
-Natiq deployment; publishing this repository does not activate the endpoint.
-If `/mcp` is unavailable, the service rollout must finish before generation works.
+The remote MCP server is live at `https://natiq.studio/mcp`. Follow the
+[Connect to Claude guide](https://natiq.studio/api/claude/) or use the install
+steps below. A Natiq account, write-scoped API key and token balance are required.
 
 ## Install
 
