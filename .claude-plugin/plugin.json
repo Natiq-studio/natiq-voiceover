@@ -1,10 +1,26 @@
 {
   "name": "natiq-voiceover",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Algerian Darija voiceovers for Remotion, motion graphics and ffmpeg projects.",
-  "author": {"name": "Natiq Studio"},
+  "author": {
+    "name": "Natiq Studio"
+  },
   "homepage": "https://natiq.studio",
   "privacyPolicyUrl": "https://natiq.studio/legal/privacy/",
   "license": "MIT",
-  "keywords": ["voiceover", "algerian-darija", "remotion", "video"]
+  "keywords": [
+    "voiceover",
+    "algerian-darija",
+    "remotion",
+    "video"
+  ],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "Natiq API key",
+      "description": "Paste a write-scoped key from https://natiq.studio/api/keys/. Generation uses your Natiq token balance.",
+      "required": true,
+      "sensitive": true
+    }
+  }
 }

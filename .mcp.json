@@ -3,7 +3,7 @@
     "natiq": {
       "type": "http",
       "url": "https://natiq.studio/mcp",
-      "headers": {"Authorization": "Bearer ${NATIQ_API_KEY}"}
+      "headers": {"Authorization": "Bearer ${user_config.api_key}"}
     }
   }
 }

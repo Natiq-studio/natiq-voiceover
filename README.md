@@ -17,45 +17,55 @@ steps below. A Natiq account, write-scoped API key and token balance are require
 1. Sign in and create a **write-scoped** API key at
    [natiq.studio/api/keys](https://natiq.studio/api/keys/). A read-only key can browse
    voices and balance, but cannot generate audio.
-2. Set `NATIQ_API_KEY` in the shell that launches Claude Code. Avoid putting the
-   key in a repository, a prompt, or a committed shell script. Bash example that
-   does not put the key in shell history:
-
-   ```bash
-   read -rsp 'Natiq API key: ' NATIQ_API_KEY; echo
-   export NATIQ_API_KEY
-   claude
-   ```
-
-   PowerShell 7: `$env:NATIQ_API_KEY = Read-Host -MaskInput 'Natiq API key'`, then
-   launch `claude` from that shell. Restart Claude after changing the variable.
-3. Run these commands inside Claude Code:
+2. In Claude Code, run this command:
 
    ```text
-   /plugin marketplace add Natiq-studio/natiq-voiceover
-   /plugin install natiq-voiceover@natiq-tools
-   /reload-plugins
-   /mcp
+   /plugin install natiq-voiceover --marketplace Natiq-studio/natiq-voiceover
    ```
 
-   Approve the MCP connection if Claude prompts you. To test a local clone, use
-   `/plugin marketplace add /absolute/path/to/natiq-voiceover` instead.
-   For development you can also launch `claude --plugin-dir /path/to/natiq-voiceover`.
+   Confirm the marketplace and choose **User** to enable it across your projects.
+
+3. Paste your key into the plugin's **Natiq API key** configuration prompt.
+   Claude masks the input and saves it in your platform's secure credential store.
+   No environment variable or configuration file editing is needed. Approve the
+   MCP connection if prompted, then use `/mcp` to check it is connected.
+
+Use a current Claude Code release (`claude update`). If the prompt does not appear,
+open `/plugin`, select the installed Natiq plugin, and choose **Configure options**. Reload with
+`/reload-plugins` if the tools have not appeared. Paste keys only into the
+configuration prompt, never into a chat message or a repository.
 
 Use `/natiq-voiceover:voiceover` or ask for an Algerian voiceover in a video task.
-The environment variable is expanded in `.mcp.json`; never replace it with a key
-in that file. If `/mcp` reports 401, check the launching shell's variable and key
-expiry/revocation. A 403 may mean the key is read-only. Respect rate-limit delays.
+If `/mcp` reports 401, check that the configured key has not expired or been revoked.
+A 403 may mean the key is read-only. Respect rate-limit delays.
 
-Without the plugin, direct MCP setup is also supported:
+### Upgrading from 1.0
 
-```bash
-claude mcp add --transport http natiq https://natiq.studio/mcp --header "Authorization: Bearer $NATIQ_API_KEY"
+Update the marketplace and plugin through `/plugin`, then enter your existing key
+in the configuration prompt once. Version 1.1 uses saved plugin configuration
+instead of the `NATIQ_API_KEY` environment variable.
+
+### Direct MCP connection (without the plugin)
+
+For clients that use environment variables, this configuration remains supported:
+
+```json
+{
+  "mcpServers": {
+    "natiq": {
+      "type": "http",
+      "url": "https://natiq.studio/mcp",
+      "headers": {"Authorization": "Bearer ${NATIQ_API_KEY}"}
+    }
+  }
+}
 ```
 
-That command stores the resolved key in Claude's local MCP configuration. Prefer
-the plugin's environment-variable configuration if you do not want a saved key.
+Set `NATIQ_API_KEY` in the environment that launches your client. Alternatively,
+use the direct CLI command in the [connection guide](https://natiq.studio/api/claude/).
 Install either connection to avoid duplicate Natiq tools.
+
+To test a local clone: `claude --plugin-dir /path/to/natiq-voiceover`.
 
 ## Tools and behavior
 
